@@ -101,8 +101,8 @@ main {
 /*Login Page css*/
 label{
   color:#f56db1;
-  padding: 5px;
-  border: 2px solid #0000003a;
+ /* padding: 5px;
+  border: 2px solid #0000003a;*/
 }
 
 input[type=text], input[type=password] {   
@@ -110,8 +110,13 @@ input[type=text], input[type=password] {
   margin: 8px 0;  
   padding: 12px 20px;
   display: inline-block;   
-  border: 2px solid rgb(0, 0, 0);   
-  box-sizing: border-box;   
+  background-color: transparent;
+  border-spacing: auto;
+  border-color: transparent;
+  border-bottom: solid rgb(255, 28, 255);
+  
+  
+   
 }  
 
 .center-img{
