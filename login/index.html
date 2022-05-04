@@ -13,18 +13,22 @@
   <body>
     <div id="root">
       <main>
-        <h1>Sign in :)</h1>
-        <h3>Hi there! Nice to see you again</h3>
+        <div class="center-img">
+          <img src="006-vacations.png" alt="Girl in a jacket" width="200" height="210">
+        </div>
+        <h1>Sign In</h1>
+        <h3>Hi there! Nice to see you again :)</h3>
         <form>  
             <div class="container">   
-                <label>Username : </label>   
-                <input type="text" placeholder="Enter Username" name="username" required>  
-                <label>Password : </label>   
-                <input type="password" placeholder="Enter Password" name="password" required>  
-                <button type="submit" class="btn">Login</button>   
-                <input type="checkbox" checked="checked"> Remember me   
-                <button type="button" class="btn"> Cancel</button>   
-                Forgot <a href="#"> password? </a>   
+                <label><strong>Email</strong> </label>   
+                <input type="text" placeholder="email@example.com" name="email" required>  
+                <label><strong>Password</strong></label>   
+                <input type="password" placeholder="Enter Password" name="password" required>
+                <div class="center-btn">
+                  <button type="submit" class="btn">Sign In</button>   
+                </div>
+                <!-- <input type="checkbox" checked="checked"> Remember me -->   
+                <!-- <a href="#">Forgot password?</a> -->
             </div>   
         </form>    
     </main>
