@@ -11,6 +11,7 @@
     <title>Self-Service</title>
   </head>
   <body>
+    <script src="../js/login.js"></script>
     <div id="root">
       <main>
         <div class="center-img">
@@ -23,7 +24,8 @@
                 <label><strong>Email</strong> </label>   
                 <input type="text" placeholder="email@example.com" name="email" required>  
                 <label><strong>Password</strong></label>   
-                <input type="password" placeholder="Enter Password" name="password" required>
+                <input id="myPwd" type="password" placeholder="Enter Password" name="password" required>
+                <input type="checkbox" onclick="myFunction()">Show Password 
                 <div class="center-btn">
                   <button type="submit" class="btn">Sign In</button>   
                 </div>
