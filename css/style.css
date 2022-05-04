@@ -53,7 +53,7 @@ body {
 
 #topbar span {
   font-size: 3.5em;
-  color: #ffc6d9;
+  color: #f56db1;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -82,7 +82,7 @@ body {
 }
 
 .card {
-  border: 5px solid #ffc6d9;
+  border: 5px solid #f56db1;
   border-radius: 20px;
   width: 80vw;
   max-width: 380px;
