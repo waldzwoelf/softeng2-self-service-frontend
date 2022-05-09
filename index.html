@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <script src="js/misc.js"></script>
     <script src="js/main.js" defer></script>
+    <script src="js/vacation.js" defer></script>
     <title>Self-Service</title>
   </head>
   <body>
@@ -17,7 +17,13 @@
         <span class="material-icons"> dvr </span>
       </div>
       <div id="content">
-        <!-- card templates go here -->
+        <h1></h1>
+        <segment id="available">
+          <h2>Verfügbar</h2>
+        </segment>
+        <segment id="requests">
+          <h2>Anträge</h2>
+        </segment>
       </div>
     </div>
   </body>
@@ -25,13 +31,6 @@
 
 <template id="card-template">
   <div class="card">
-    <h3>Card</h3>
     <!-- card info template goes here -->
-  </div>
-</template>
-
-<template id="card-info-template">
-  <div class="card-info">
-    <!-- spans go here -->
   </div>
 </template>
