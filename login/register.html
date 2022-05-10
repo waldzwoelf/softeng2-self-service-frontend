@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../css/style.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <script src="../js/misc.js"></script>
+    <script src="../js/login.js" defer></script>
+    <title>Self-Service</title>
+</head>
+<body>
+<script src="../js/login.js"></script>
+<div id="root">
+    <main>
+        <div class="center-img">
+            <img src="006-vacations.png" alt="Girl in a jacket" width="200" height="210"/>
+        </div>
+        <div id="headertext"><h1>Register</h1>
+            <h3>Let's get you enrolled :)</h3>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"> </span>
+            </label>
+            Already have an account
+        </div>
+        <form onsubmit="//send values to backend and preventDefault">
+            <div class="container">
+                <label for="emailInput">Email</label>
+                <input id="emailInput" type="email" placeholder="email@example.com" name="email" required/>
+                <label for="pwdInput">Password</label>
+                <input id="pwdInput" type="password" placeholder="Enter Password" name="password" required/>
+                <label for="role">Role</label>
+                <select name="role" id="role">
+                    <option value="user" selected>User</option>
+                    <option value="manager">Manager</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <div class="center-btn">
+                    <button type="submit" class="btn">Sign up</button>
+                </div>
+            </div>
+        </form>
+    </main>
+</div>
+</body>
+</html>
