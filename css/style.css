@@ -186,11 +186,16 @@ div#headertext {
   flex-direction: column;
 }
 
+#switch {
+  display: flex;
+  flex-direction: column;
+}
 .switch {
   position: relative;
   display: inline-block;
   width: 60px;
   height: 34px;
+  margin-bottom: 10px;
 }
 
 .switch input {
