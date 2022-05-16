@@ -9,7 +9,6 @@ function toggle() {
     let roleLabel = document.getElementById('role-label');
     let switchValue = document.getElementById('switch-value').checked;
     let buttonText = document.getElementById('submit-button');
-    console.log(switchValue);
     if (switchValue){
         register.style.display= 'none';
         login.style.display = 'block';
