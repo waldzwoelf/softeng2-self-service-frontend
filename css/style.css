@@ -251,3 +251,14 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+#register-header {
+  display: block;
+}
+#login-header {
+  display: none;
+}
+
+#role {
+  display: block;
+}
