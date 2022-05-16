@@ -1,0 +1,17 @@
+name: Deploy to server
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.PUSH_KEY }}
+    - name: rsync over ssh
+      run: rsync -rP ./index.html ./css ./js ./static ./login okedikka.de@okedikka.de:/var/www/vhosts/okedikka.de/softeng.okedikka.de/
