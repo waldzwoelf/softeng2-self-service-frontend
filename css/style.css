@@ -80,7 +80,7 @@ body {
 }
 
 .card h3 {
-  margin: .3em 0;
+  margin: 0.3em 0;
 }
 
 /*Login Page css*/
@@ -97,7 +97,7 @@ form label:last-of-type {
 input[type='text'],
 input[type='password'],
 input[type='email'],
-select{
+select {
   width: 100%;
   margin: 8px 0;
   padding: 12px 20px;
@@ -194,21 +194,20 @@ div#headertext {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
-
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 26px;
   width: 26px;
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
@@ -243,7 +242,7 @@ input:checked + .slider:before {
 
 #role {
   display: block;
-
+}
 segment {
   display: flex;
   flex-direction: row;
@@ -262,5 +261,4 @@ segment h2 {
   width: 100%;
   margin: 0.5em 0; /*default is .83em*/
   border-bottom: 2px solid gray;
-
 }
