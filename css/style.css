@@ -133,7 +133,6 @@ button {
   border: 0;
   vertical-align: middle;
   text-decoration: none;
-  background: transparent;
   padding: 0;
   font-size: inherit;
   font-family: inherit;
@@ -166,12 +165,13 @@ button {
   transform: translateY(-1px);
 }
  
- button.learn-more {
+ button.sign-in {
   width: 12rem;
   height: auto;
+  background: transparent;
  }
  
- button.learn-more .circle {
+ button.sign-in .circle {
   transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
   position: relative;
   display: block;
@@ -182,7 +182,7 @@ button {
   border-radius: 1.625rem;
  }
  
- button.learn-more .circle .icon {
+ button.sign-in .circle .icon {
   transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
   position: absolute;
   top: 0;
@@ -191,7 +191,7 @@ button {
   background: #fff;
  }
  
- button.learn-more .circle .icon.arrow {
+ button.sign-in .circle .icon.arrow {
   transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
   left: 0.625rem;
   width: 1.125rem;
@@ -199,7 +199,7 @@ button {
   background: none;
  }
  
- button.learn-more .circle .icon.arrow::before {
+ button.sign-in .circle .icon.arrow::before {
   position: absolute;
   content: "";
   top: -0.29rem;
@@ -211,7 +211,7 @@ button {
   transform: rotate(45deg);
  }
  
- button.learn-more .button-text {
+ button.sign-in .button-text {
   transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
   position: absolute;
   top: 0;
