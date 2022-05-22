@@ -6,5 +6,4 @@ function makeGenericCard(fragment) {
   return clone
 }
 
-//dbg
-VMView.dbg()
+VacationView.display()

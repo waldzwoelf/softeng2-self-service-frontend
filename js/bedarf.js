@@ -22,14 +22,6 @@ const VMView = {
       statusText.textContent = 'Offen'
       statusText.style.color = 'orange'
     }
-
-
-
-
-
-
-    
-
     frag.appendChild(document.createElement('p')).textContent = vm.comment
 
     let card = makeGenericCard(frag)
@@ -48,6 +40,9 @@ const VMView = {
     // die ganzen andere funktionen hier aufrufen, wie im dbg
     //backend und dann in '#requests' rein
     // sortien nach status? genehmigt -> offen -> abgelehnt
+
+    //remove this
+    this.dbg()
   },
   dbg() {
     document.querySelectorAll('#requests .card').forEach((it) => {

@@ -40,6 +40,10 @@ const VacationView = {
     // die ganzen andere funktionen hier aufrufen, wie im dbg
     //backend und dann in '#requests' rein
     // sortieren nach urlaubs datum, wenn nicht vom backend schon
+
+    
+    //remove this
+    this.dbg()
   },
   dbg() {
     document.querySelectorAll('#requests .card').forEach((it) => {
