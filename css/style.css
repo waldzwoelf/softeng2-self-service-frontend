@@ -21,6 +21,7 @@ body {
   min-height: 100vh;
   background: #fff0e2;
   font-family: Calibri, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 #root {
@@ -261,4 +262,20 @@ segment h2 {
   width: 100%;
   margin: 0.5em 0; /*default is .83em*/
   border-bottom: 2px solid gray;
+}
+
+#newVacationBtn {
+  position: fixed;
+  right: 2vh;
+  bottom: 2vh;
+  width: min(8vh, 80px);
+  height: min(8vh, 80px);
+  border-radius: min(8vh, 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#newVacationBtn .material-icons {
+  font-size: 4vh;
 }
