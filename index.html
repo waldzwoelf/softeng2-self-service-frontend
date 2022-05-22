@@ -6,25 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <script src="js/main.js" defer></script>
     <script src="js/vacation.js" defer></script>
+    <script src="js/bedarf.js" defer></script>
+    <script src="js/main.js" defer></script>
     <title>Self-Service</title>
   </head>
   <body>
     <div id="root">
       <div id="topbar">
-        <span class="material-icons"> flight_takeoff </span>
-        <span class="material-icons"> dvr </span>
+        <span class="material-icons" onclick="VacationView.dbg() //just for demonstration purposes">
+          flight_takeoff
+        </span>
+        <span class="material-icons" onclick="VMView.dbg() //just for demonstration purposes"> dvr </span>
       </div>
       <div id="content">
         <h1></h1>
         <segment id="available">
           <h2>Verfügbar</h2>
+          <h3>0 Tage</h3>
         </segment>
         <segment id="requests">
           <h2>Anträge</h2>
         </segment>
       </div>
+      <button id="newBtn">
+        <a href="">
+          <span class="material-icons"> add </span>
+        </a>
+      </button>
     </div>
   </body>
 </html>
@@ -33,4 +42,3 @@
   <div class="card">
     <!-- card info template goes here -->
   </div>
-</template>

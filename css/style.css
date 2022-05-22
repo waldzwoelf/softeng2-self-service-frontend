@@ -17,6 +17,7 @@ main {
 
 #root,
 body {
+  overflow-x: hidden;
   width: 100vw;
   min-height: 100vh;
   background: #fff0e2;
@@ -63,10 +64,11 @@ body {
   padding: 1ch;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .card div {
-  min-width: 50%;
+  max-width: 60%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -77,6 +79,10 @@ body {
   width: 100%;
   text-align: center;
   font-style: italic;
+}
+
+.card span {
+  text-align: center;
 }
 
 .card h3 {
@@ -261,4 +267,28 @@ segment h2 {
   width: 100%;
   margin: 0.5em 0; /*default is .83em*/
   border-bottom: 2px solid gray;
+}
+
+#newBtn {
+  position: fixed;
+  right: 2vh;
+  bottom: 2vh;
+  width: min(8vh, 80px);
+  height: min(8vh, 80px);
+  border-radius: min(8vh, 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#newBtn a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#newBtn .material-icons {
+  font-size: 4vh;
 }

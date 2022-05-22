@@ -25,32 +25,40 @@ const VacationView = {
     let card = makeGenericCard(frag)
     return card
   },
-  insertAvailableDays(days) {
+  showAvailableDays(days) {
     let segment = document.getElementById('available')
-    segment.appendChild(document.createElement('h3')).textContent = `${days} Tage`
+    segment.style.display = 'flex'
+    segment.querySelector('h3').textContent = `${days} Tage`
   },
   updateTitle() {
     document.querySelector('#content > h1').textContent = 'Urlaub'
   },
+  updateNewBtn() {
+    document.querySelector('#newBtn a').href = '/new_vacation'
+  },
   display(params) {
+    // die ganzen andere funktionen hier aufrufen, wie im dbg
     //backend und dann in '#requests' rein
-  }
-}
-
-
-//dbg
-let states = ['genehmigt', 'abgelehnt', 'offen']
-
-VacationView.updateTitle()
-VacationView.insertAvailableDays(17)
-for (const i of Array(70).keys()) {
-  document.getElementById('requests').appendChild(
-    VacationView.makeCard({
-      start: `2019-01-${i}`,
-      end: `2019-01-${i + 1}`,
-      status: states[i % 3],
-      comment: 'Malle is nur einmal im Jahr'
+    // sortieren nach urlaubs datum, wenn nicht vom backend schon
+  },
+  dbg() {
+    document.querySelectorAll('#requests .card').forEach((it) => {
+      it.remove()
     })
-  )
+    let states = ['genehmigt', 'abgelehnt', 'offen']
+
+    VacationView.updateTitle()
+    VacationView.showAvailableDays(17)
+    VacationView.updateNewBtn()
+    for (const i of Array(70).keys()) {
+      document.getElementById('requests').appendChild(
+        VacationView.makeCard({
+          start: `2019-01-${i}`,
+          end: `2019-01-${i + 1}`,
+          status: states[i % 3],
+          comment: 'Malle is nur einmal im Jahr',
+        })
+      )
+    }
+  },
 }
-//
