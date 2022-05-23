@@ -2,9 +2,7 @@ function toggleGleitzeit() {
 
     let checkboxGleitzeit = document.getElementById('checkbox_gleitzeit');
     let isGleitzeitChecked = checkboxGleitzeit.checked;
-    console.log(isGleitzeitChecked);
     let inputUrlaubstage = document.getElementById('number_urlaubstage'); 
-    console.log(inputUrlaubstage);
 
 
     if (isGleitzeitChecked) {
