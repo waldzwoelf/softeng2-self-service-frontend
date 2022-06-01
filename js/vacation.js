@@ -3,8 +3,9 @@ const VacationView = {
     let frag = new DocumentFragment()
     let zeit = frag.appendChild(document.createElement('div'))
     zeit.appendChild(document.createElement('h3')).textContent = 'Zeitraum'
-    zeit.appendChild(document.createElement('span')).textContent = `von ${vacation.start}`
-    zeit.appendChild(document.createElement('span')).textContent = `bis ${vacation.end}`
+    zeit.appendChild(document.createElement('span')).textContent = `${vacation.dayCount} Tage`
+    zeit.appendChild(document.createElement('span')).textContent = `von ${new Date(vacation.startDate).toLocaleDateString('de-DE')}`
+    zeit.appendChild(document.createElement('span')).textContent = `bis ${new Date(vacation.endDate).toLocaleDateString('de-DE')}`
 
     let status = frag.appendChild(document.createElement('div'))
     let statusText = status.appendChild(document.createElement('h3'))
@@ -20,7 +21,7 @@ const VacationView = {
       statusText.style.color = 'orange'
     }
 
-    frag.appendChild(document.createElement('p')).textContent = vacation.comment
+    frag.appendChild(document.createElement('p')).textContent = vacation.comment || "Kein Kommentar"
 
     let card = makeGenericCard(frag)
     return card
@@ -47,24 +48,20 @@ const VacationView = {
 
 
     // available days
-    let userdata = {nachAbzugUrlaubsKonto: 17481652}
-    // let userdata = await fetch(`https://studium.webfajo.de/mitarbeiter/userdata/${DBGID}`).json()
+    let res = await fetch(`https://studium.webfajo.de/mitarbeiter/userdata/${DBGID}`)
+    let userdata = await res.json()
     VacationView.showAvailableDays(userdata.nachAbzugUrlaubsKonto)
 
     // antrage
-    res = { status: 400 }
-    // res = await fetch(`https://studium.webfajo.de/mitarbeiter/urlaubsantraege/${DBGID}`)
+    res = await fetch(`https://studium.webfajo.de/mitarbeiter/urlaubsantraege/${DBGID}`)
     if (res.status !== 200) {
       document.getElementById('requests').appendChild(makeInfoCard('Keine Anträge vorhanden'))
     }
     let vacations = await res.json()
     console.log(vacations)
-    vacation.forEach((vacay) => {
+    vacations.forEach((vacay) => {
       document.getElementById('requests').appendChild(VacationView.makeCard(vacay))
     })
-
-    //remove this
-    this.dbg()
   },
   dbg() {
     document.querySelectorAll('#requests .card').forEach((it) => {
