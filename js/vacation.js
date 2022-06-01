@@ -34,7 +34,7 @@ const VacationView = {
     document.querySelector('#content > h1').textContent = 'Urlaub'
   },
   updateNewBtn() {
-    document.querySelector('#newBtn a').href = '/new_vacation'
+    document.querySelector('#newBtn a').href = '/urlaubsantrag-stellen'
   },
   display(params) {
     // die ganzen andere funktionen hier aufrufen, wie im dbg

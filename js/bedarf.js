@@ -3,11 +3,11 @@ const VMView = {
     // was fuer infos haben wir hier? die felder hier sind jz ausgedacht
     let frag = new DocumentFragment()
     let info = frag.appendChild(document.createElement('div'))
-    info.appendChild(document.createElement('h3')).textContent = `${vm.name}`
-    info.appendChild(document.createElement('span')).textContent = `${vm.environment}`
-    info.appendChild(document.createElement('span')).textContent = `RAM: ${vm.ram}`
-    info.appendChild(document.createElement('span')).textContent = `SSD: ${vm.storage}`
-    info.appendChild(document.createElement('span')).textContent = `Erstellt am: ${vm.createdAt}`
+    info.appendChild(document.createElement('h3')).textContent = `${vm.ipAdress}`
+    info.appendChild(document.createElement('span')).textContent = `Typ: ${vm.virtualMachineType}`
+    info.appendChild(document.createElement('span')).textContent = `Username/Password:`
+    info.appendChild(document.createElement('span')).textContent = `${vm.username}`
+    info.appendChild(document.createElement('span')).textContent = `${vm.initialPassword}`
 
     let status = frag.appendChild(document.createElement('div'))
     let statusText = status.appendChild(document.createElement('h3'))
@@ -22,7 +22,7 @@ const VMView = {
       statusText.textContent = 'Offen'
       statusText.style.color = 'orange'
     }
-    frag.appendChild(document.createElement('p')).textContent = vm.comment
+    frag.appendChild(document.createElement('p')).textContent = vm.description
 
     let card = makeGenericCard(frag)
     return card
@@ -56,13 +56,12 @@ const VMView = {
     for (const i of Array(70).keys()) {
       document.getElementById('requests').appendChild(
         VMView.makeCard({
-          name: `VM${i}`,
-          environment: `CoolOS 10.${i}`,
-          ram: `${i} GB`,
-          storage: `${i*11} GB`,
-          createdAt: `2047-01-${i}`,
-          status: states[i % 3],
-          comment: 'Aufjedenfall nur für die arbeit ;)',
+          virtualMachineType: 0,
+          description: "Dikka was",
+          ipAdress: "255.255.255.255",
+          username: "bvyuk4fds",
+          initialPassword: "fsdfe88943nsifgdf",
+          status: states[i % 3]
         })
       )
     }
