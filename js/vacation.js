@@ -41,12 +41,28 @@ const VacationView = {
   updateNewBtn() {
     document.querySelector('#newBtn a').href = '/urlaubsantrag-stellen'
   },
-  display(params) {
-    // die ganzen andere funktionen hier aufrufen, wie im dbg
-    //backend und dann in '#requests' rein
-    // sortieren nach urlaubs datum, wenn nicht vom backend schon
+  async display(params) {
+    // dann gegen richtige ID austauschen, die wa durch den login bkommen
+    let DBGID = -1
 
-    
+
+    // available days
+    let userdata = {nachAbzugUrlaubsKonto: 17481652}
+    // let userdata = await fetch(`https://studium.webfajo.de/mitarbeiter/userdata/${DBGID}`).json()
+    VacationView.showAvailableDays(userdata.nachAbzugUrlaubsKonto)
+
+    // antrage
+    res = { status: 400 }
+    // res = await fetch(`https://studium.webfajo.de/mitarbeiter/urlaubsantraege/${DBGID}`)
+    if (res.status !== 200) {
+      document.getElementById('requests').appendChild(makeInfoCard('Keine Anträge vorhanden'))
+    }
+    let vacations = await res.json()
+    console.log(vacations)
+    vacation.forEach((vacay) => {
+      document.getElementById('requests').appendChild(VacationView.makeCard(vacay))
+    })
+
     //remove this
     this.dbg()
   },
