@@ -58,6 +58,7 @@ const VacationView = {
       document.getElementById('requests').appendChild(makeInfoCard('Keine Anträge vorhanden'))
     }
     let vacations = await res.json()
+
     console.log(vacations)
     vacations.forEach((vacay) => {
       document.getElementById('requests').appendChild(VacationView.makeCard(vacay))
