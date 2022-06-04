@@ -18,7 +18,7 @@
         <div id="register-header"><h1>Urlaub beantragen</h1>
 
         </div>
-        <form onsubmit="//send values to backend and prevent default and check format" class="form-urlaub">
+        <form onsubmit="return sendVacationRequest()" class="form-urlaub">
             <div class="container">
                 <label for="von" style="display: inline-block; width: 40px;">Von: </label>
                 <input id="von" type="date" name="von" required/>
@@ -26,14 +26,6 @@
                 <br>
                 <label for="bis" style="display: inline-block; width: 40px;">Bis: </label>  
                 <input id="bis" type="date" name="bis" required/>
-                <br>
-                <br>
-                <label>Anzahl Urlaubstage:</label>
-                <input id="number_urlaubstage" type="number" readonly="true" value=0 min="0" style="width: 3em; background-color: #fff0e2; border-color: transparent; color: grey;" >
-                <br>
-                <br>
-                <input id="checkbox_gleitzeit" type="checkbox" onchange="toggleGleitzeit()"> <label for="gleitzeit">Gleitzeit</label>
-                <br>
                 <br>
                 <label for="comment">Kommentar:</label>
                 <textarea name="comment" id="comment" cols="37" rows="8"></textarea>
