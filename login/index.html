@@ -32,20 +32,21 @@
             <form id="thisform">
                 <div class="container">
                     <label for="nameInput" id="name-label">Name</label>
-                    <input id="nameInput" type="name" placeholder="Vorname Nachname" name="name" required/>
+                    <input id="nameInput" type="name" placeholder="Vorname Nachname" name="name" required />
                     <label for="emailInput">Email</label>
-                    <input id="emailInput" type="email" placeholder="email@example.com" name="email" required/>
+                    <input id="emailInput" type="email" placeholder="email@example.com" name="email" required />
                     <label for="pwdInput">Password</label>
-                    <input id="pwdInput" type="password" placeholder="Enter Password" name="password" required/>
+                    <input id="pwdInput" type="password" placeholder="Enter Password" name="password" required />
                     <label for="pwdconfirmationInput" id="pwdconf-label">Password</label>
-                    <input id="pwdconfirmationInput" type="password" placeholder="Confirm Password" name="password_confirmation" required/>
+                    <input id="pwdconfirmationInput" type="password" placeholder="Confirm Password"
+                        name="password_confirmation" required />
                     <label for="role" id="role-label">Role</label>
                     <select name="role" id="role">
-                    <option value="" selected disabled>Choose your role</option>
-                    <option value="user">User</option>
-                    <option value="manager">Manager</option>
-                    <option value="admin">Admin</option>
-                </select>
+                        <option value="" selected disabled>Choose your role</option>
+                        <option value="user">User</option>
+                        <option value="manager">Manager</option>
+                        <option value="admin">Admin</option>
+                    </select>
                     <p id="errors"></p>
                     <div class="center-btn">
                         <button type="submit" class="btn" id="submit-button">Sign up</button>
@@ -53,9 +54,9 @@
                 </div>
                 <p>Already have an account?</p>
                 <div id="switch"><label class="switch">
-                <input type="checkbox" id="switch-value" onchange="toggle()">
-                <span class="slider round"> </span>
-            </label>
+                        <input type="checkbox" id="switch-value" onchange="toggle()">
+                        <span class="slider round"> </span>
+                    </label>
                 </div>
 
 
