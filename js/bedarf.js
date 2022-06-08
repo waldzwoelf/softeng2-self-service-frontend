@@ -67,7 +67,10 @@ const VMView = {
   updateNewBtn() {
     document.querySelector('#newBtn a').href = '/new_vm'
   },
-  async display(params) {
+  display(params) {
+    document.querySelectorAll('#requests .card').forEach((it) => {
+      it.remove()
+    })
     // die ganzen andere funktionen hier aufrufen, wie im dbg
     //backend und dann in '#requests' rein
     // sortien nach status? genehmigt -> offen -> abgelehnt

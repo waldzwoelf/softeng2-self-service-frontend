@@ -43,6 +43,12 @@ const VacationView = {
     document.querySelector('#newBtn a').href = '/urlaubsantrag-stellen'
   },
   async display(params) {
+    document.querySelectorAll('#requests .card').forEach((it) => {
+      it.remove()
+    })
+    this.updateTitle()
+    this.updateNewBtn()
+
     // dann gegen richtige ID austauschen, die wa durch den login bkommen
     let DBGID = -1
 
