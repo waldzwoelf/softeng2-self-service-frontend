@@ -139,7 +139,109 @@ function signIn() {
                 }
             } else {
 
-                // JWT speichern und auch die Homepage weiterleiten
+                // JWT in Cookie speichern und auch die Homepage weiterleiten
+                const JWT = data.access_token;
+                const expire_time = data.expires_in;
+
+                console.log(expire_time);
+
+                setCookie("JWT", JWT, expire_time)
+                console.log(getCookie("JWT"));
+            }
+
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+
+            // Error ausgabe
+        });
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+
+    // let decodedCookie = decodeURIComponent(document.cookie);
+    //let ca = decodedCookie.split(';');
+
+    let ca = document.cookie.split(';');
+
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            console.log(c.substring(name.length, c.length));
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function setCookie(cname, cvalue, exseconds) {
+    const d = new Date();
+    console.log(d.getTime());
+    d.setTime(d.getTime() + (exseconds * 1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+
+function getUsers() {
+
+    console.log('Bearer ' + getCookie("JWT"));
+
+    fetch('https://auth.ber.ski/api/auth/user-profile', {
+        method: 'GET',
+        headers: {
+            Authorization: 'Bearer ' + getCookie("JWT")
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+
+            // Data
+            console.log(data);
+
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+
+            // Error ausgabe
+        });
+}
+
+function refreshToken() {
+    fetch('https://auth.ber.ski/api/auth/refresh', {
+        method: 'POST',
+        headers: {
+            Authorization: 'Bearer ' + getCookie("JWT"),
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+
+            // Data inputted not correct => output Error messages in error paragraph
+            if (!data.hasOwnProperty('user')) {
+                for (const item in data) {
+
+                    data[item].forEach(errormsg => {
+                        //TODO Fehlerbehandlung ändern für refresh
+                        document.getElementById("errors").innerHTML += (errormsg + "<br>");
+                    });
+                }
+            } else {
+
+                // JWT in Cookie speichern
+                const JWT = data.access_token;
+                const expire_time = data.expires_in;
+
+                console.log(expire_time);
+
+                setCookie("JWT", JWT, expire_time)
+                console.log(getCookie("JWT"));
             }
 
         })
