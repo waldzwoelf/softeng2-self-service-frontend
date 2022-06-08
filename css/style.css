@@ -103,6 +103,7 @@ form label:last-of-type {
 input[type='text'],
 input[type='password'],
 input[type='email'],
+input[type='name'],
 select {
   width: 100%;
   margin: 8px 0;
