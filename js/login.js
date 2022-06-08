@@ -3,18 +3,18 @@
 
 const form = document.getElementById('thisform');
 
-form.addEventListener('submit', function (e) {
-    e.preventDefault();
+form.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-    let switchValue = document.getElementById('switch-value').checked;
-    if (switchValue) {
-        signIn();
+        let switchValue = document.getElementById('switch-value').checked;
+        if (switchValue) {
+            signIn();
 
-    } else {
-        register();
-    }
-})
-// check if already logged in? (kommt aufs backend an ob das so geht)
+        } else {
+            register();
+        }
+    })
+    // check if already logged in? (kommt aufs backend an ob das so geht)
 
 
 function toggle() {
@@ -59,6 +59,39 @@ function toggle() {
 
 function register() {
     console.log("SEND Register");
+    const form = document.getElementById('thisform');
+    const name = form.elements['name'].value;
+    const email = form.elements['email'].value;
+    const password = form.elements['password'].value;
+    const passwordconfirm = form.elements['password_confirmation'].value;
+    const role = form.elements['role'];
+    const rolevalue = role.options[role.selectedIndex].value;
+
+    const registerdata = {
+        "name": name,
+        "email": email,
+        "password": password,
+        "password_confirmation": passwordconfirm,
+        "role": rolevalue
+    }
+
+    fetch('https://auth.ber.ski/api/auth/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(registerdata)
+        }).then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+
+            //Information über Email Verifizieren zurückgeben
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+
+            // Error ausgabe
+        });
 }
 
 function signIn() {
@@ -72,12 +105,12 @@ function signIn() {
     console.log('Sending POST with ' + text);
 
     fetch('https://auth.ber.ski/api/auth/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
