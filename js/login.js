@@ -37,3 +37,23 @@ function toggle() {
 
     }
 }
+
+function onSubmitPress() {
+    let switchValue = document.getElementById('switch-value').checked;
+    if (switchValue) {
+        signIn();
+
+    } else {
+        register();
+    }
+
+}
+
+function register() {
+    console.log("SEND Register");
+}
+
+function signIn() {
+    console.log("SEND Sign In");
+
+}
