@@ -3,11 +3,18 @@ const VMView = {
     // was fuer infos haben wir hier? die felder hier sind jz ausgedacht
 
 
+    let vmTypes = {
+      0: "WindowsServer2022",
+      1: "Windows11",
+      2: "Ubuntu2204"
+    }
+
+
     if (type === 'available'){
       let frag = new DocumentFragment()
       let info = frag.appendChild(document.createElement('div'))
       info.appendChild(document.createElement('h3')).textContent = `${vm.ipAddress}`
-      info.appendChild(document.createElement('span')).textContent = `Typ: ${vm.virtualMachineType}`
+      info.appendChild(document.createElement('span')).textContent = `Typ: ${vmTypes[vm.virtualMachineType]}`
       info.appendChild(document.createElement('span')).textContent = `Username/Password:`
       info.appendChild(document.createElement('span')).textContent = `${vm.username}`
       info.appendChild(document.createElement('span')).textContent = `${vm.initialPassword}`
@@ -22,15 +29,7 @@ const VMView = {
       let frag = new DocumentFragment()
       let info = frag.appendChild(document.createElement('div'))
       info.appendChild(document.createElement('h3')).textContent = `${vm.employeeEmailAddress}`
-      let vmType = ""
-      if (vm.virtualMachineType === 0){
-        vmType = "WindowsServer2022"
-      } else if(vm.virtualMachineType === 1){
-        vmType = "Windows11"
-      } else if (vm.virtualMachineType === 2){
-        vmType = "Ubuntu2204"
-      }
-      info.appendChild(document.createElement('span')).textContent = `Typ: ${vmType}`
+      info.appendChild(document.createElement('span')).textContent = `Typ: ${vmTypes[vm.virtualMachineType]}`
       info.appendChild(document.createElement('p')).textContent = vm.description
       let status = frag.appendChild(document.createElement('div'))
       let statusText = status.appendChild(document.createElement('h3'))
@@ -91,8 +90,6 @@ const VMView = {
       vmData.forEach((vmObj) => {
           document.getElementById('available-vms').appendChild(VMView.makeCard('available',vmObj))
       })
-    //remove this
-    //this.dbg()
   },
   dbg() {
     document.querySelectorAll('#requests .card').forEach((it) => {
@@ -104,17 +101,6 @@ const VMView = {
     VMView.hideAvailableDays()
     VMView.updateNewBtn()
     VMView.showAvailableVMs()
-    /*for (const i of Array(70).keys()) {
-      document.getElementById('requests').appendChild(
-        VMView.makeCard({
-          virtualMachineType: 0,
-          description: "Dikka was",
-          ipAdress: "255.255.255.255",
-          username: "bvyuk4fds",
-          initialPassword: "fsdfe88943nsifgdf",
-          status: states[i % 3]
-        })
-      )
-    }*/
+
   },
 }
