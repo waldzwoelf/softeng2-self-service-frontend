@@ -1,4 +1,19 @@
 // logic fuer login backend requests
+
+
+const form = document.getElementById('thisform');
+
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    let switchValue = document.getElementById('switch-value').checked;
+    if (switchValue) {
+        signIn();
+
+    } else {
+        register();
+    }
+})
 // check if already logged in? (kommt aufs backend an ob das so geht)
 
 
@@ -42,17 +57,6 @@ function toggle() {
     }
 }
 
-function onSubmitPress() {
-    let switchValue = document.getElementById('switch-value').checked;
-    if (switchValue) {
-        signIn();
-
-    } else {
-        register();
-    }
-
-}
-
 function register() {
     console.log("SEND Register");
 }
@@ -60,8 +64,29 @@ function register() {
 function signIn() {
     console.log("SEND Sign In");
 
-    const form = document.getElementById('thisform');
-    
-    const email = form.elements['email'].value;
-    alert(email);
+    const data = {};
+    data['email'] = form.elements['email'].value;
+    data['password'] = form.elements['password'].value;
+
+    const text = JSON.stringify(data);
+    console.log('Sending POST with ' + text);
+
+    fetch('https://auth.ber.ski/api/auth/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+
+            // JWT speichern und auch die Homepage weiterleiten
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+
+            // Error ausgabe
+        });
 }
