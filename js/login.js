@@ -60,4 +60,8 @@ function register() {
 function signIn() {
     console.log("SEND Sign In");
 
+    const form = document.getElementById('thisform');
+    
+    const email = form.elements['email'].value;
+    alert(email);
 }
