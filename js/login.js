@@ -59,7 +59,6 @@ function toggle() {
 }
 
 function register() {
-    console.log("SEND Register");
     const form = document.getElementById('thisform');
     const name = form.elements['name'].value;
     const email = form.elements['email'].value;
@@ -99,9 +98,8 @@ function register() {
                 }
             } else {
 
-                // Correct 
+                //Information über Email Verifizieren zurückgeben
             }
-            //Information über Email Verifizieren zurückgeben
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -111,14 +109,14 @@ function register() {
 }
 
 function signIn() {
-    console.log("SEND Sign In");
 
-    const data = {};
-    data['email'] = form.elements['email'].value;
-    data['password'] = form.elements['password'].value;
+    const email = form.elements['email'].value;
+    const passwort = form.elements['password'].value;
 
-    const text = JSON.stringify(data);
-    console.log('Sending POST with ' + text);
+    const data = {
+        "email": email,
+        "password": passwort
+    };
 
     fetch('https://auth.ber.ski/api/auth/login', {
         method: 'POST',
@@ -141,9 +139,9 @@ function signIn() {
                 }
             } else {
 
-                // Correct 
+                // JWT speichern und auch die Homepage weiterleiten
             }
-            // JWT speichern und auch die Homepage weiterleiten
+
         })
         .catch((error) => {
             console.error('Error:', error);
