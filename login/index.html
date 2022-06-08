@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="../css/style.css"/>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <script src="../js/misc.js"></script>
     <script src="../js/login.js" defer></script>
     <title>Self-Service</title>
 </head>
+
 <body>
 <div id="root">
     <main>
@@ -19,43 +21,44 @@
         <div id="register-header"><h1> Register</h1>
             <h3>Let's get you enrolled :)</h3>
 
-        </div>
-        <div id="login-header"><h1> Login</h1>
-            <h3>
-                Hi there! Nice to see you again :)            </h3>
+            </div>
+            <div id="login-header">
+                <h1> Login</h1>
+                <h3>
+                    Hi there! Nice to see you again :) </h3>
 
-        </div>
-        <form onsubmit="//send values to backend and preventDefault">
-            <div class="container">
-                <label for="nameInput">Name</label>
-                <input id="nameInput" type="name" placeholder="Vorname Nachname" name="name" required/>
-                <label for="emailInput">Email</label>
-                <input id="emailInput" type="email" placeholder="email@example.com" name="email" required/>
-                <label for="pwdInput">Password</label>
-                <input id="pwdInput" type="password" placeholder="Enter Password" name="password" required/>
-                <label for="pwdconfirmationInput">Password</label>
-                <input id="pwdconfirmationInput" type="password" placeholder="Confirm Password" name="password_confirmation" required/>
-                <label for="role" id="role-label">Role</label>
-                <select name="role" id="role">
+            </div>
+            <form onsubmit="//send values to backend and preventDefault">
+                <div class="container">
+                    <label for="nameInput" id="name-label">Name</label>
+                    <input id="nameInput" type="name" placeholder="Vorname Nachname" name="name" required/>
+                    <label for="emailInput">Email</label>
+                    <input id="emailInput" type="email" placeholder="email@example.com" name="email" required/>
+                    <label for="pwdInput">Password</label>
+                    <input id="pwdInput" type="password" placeholder="Enter Password" name="password" required/>
+                    <label for="pwdconfirmationInput" id="pwdconf-label">Password</label>
+                    <input id="pwdconfirmationInput" type="password" placeholder="Confirm Password" name="password_confirmation" required/>
+                    <label for="role" id="role-label">Role</label>
+                    <select name="role" id="role">
                     <option value="" selected disabled>Choose your role</option>
                     <option value="user">User</option>
                     <option value="manager">Manager</option>
                     <option value="admin">Admin</option>
                 </select>
-                <div class="center-btn">
-                    <button type="submit" class="btn" id="submit-button">Sign up</button>
+                    <div class="center-btn">
+                        <button type="submit" class="btn" id="submit-button">Sign up</button>
+                    </div>
                 </div>
-            </div>
-            <p>Already have an account</p>
-            <div id="switch"><label class="switch">
+                <p>Already have an account</p>
+                <div id="switch"><label class="switch">
                 <input type="checkbox" id="switch-value" onchange="toggle()">
                 <span class="slider round"> </span>
             </label>
-            </div>
+                </div>
 
 
-        </form>
-    </main>
-</div>
+            </form>
+        </main>
+    </div>
 </body>
-</html>
+
