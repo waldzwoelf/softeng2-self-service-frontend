@@ -1,31 +1,57 @@
 const VMView = {
-  makeCard(vm) {
+  makeCard(type, vm) {
     // was fuer infos haben wir hier? die felder hier sind jz ausgedacht
-    let frag = new DocumentFragment()
-    let info = frag.appendChild(document.createElement('div'))
-    info.appendChild(document.createElement('h3')).textContent = `${vm.ipAddress}`
-    info.appendChild(document.createElement('span')).textContent = `Typ: ${vm.virtualMachineType}`
-    info.appendChild(document.createElement('span')).textContent = `Username/Password:`
-    info.appendChild(document.createElement('span')).textContent = `${vm.username}`
-    info.appendChild(document.createElement('span')).textContent = `${vm.initialPassword}`
 
-    let status = frag.appendChild(document.createElement('div'))
-    let statusText = status.appendChild(document.createElement('h3'))
-    if (vm.status === 'genehmigt') {
-      //string kommt vom backend dann
-      statusText.textContent = 'Genehmigt'
-      statusText.style.color = 'green'
-    } else if (vm.status === 'abgelehnt') {
-      statusText.textContent = 'Abgelehnt'
-      statusText.style.color = 'red'
-    } else {
-      statusText.textContent = 'Offen'
-      statusText.style.color = 'orange'
+
+    if (type === 'available'){
+      let frag = new DocumentFragment()
+      let info = frag.appendChild(document.createElement('div'))
+      info.appendChild(document.createElement('h3')).textContent = `${vm.ipAddress}`
+      info.appendChild(document.createElement('span')).textContent = `Typ: ${vm.virtualMachineType}`
+      info.appendChild(document.createElement('span')).textContent = `Username/Password:`
+      info.appendChild(document.createElement('span')).textContent = `${vm.username}`
+      info.appendChild(document.createElement('span')).textContent = `${vm.initialPassword}`
+
+      frag.appendChild(document.createElement('p')).textContent = vm.description
+
+      let card = makeGenericCard(frag)
+      return card
+
     }
-    frag.appendChild(document.createElement('p')).textContent = vm.description
+    if (type === 'request') {
+      let frag = new DocumentFragment()
+      let info = frag.appendChild(document.createElement('div'))
+      info.appendChild(document.createElement('h3')).textContent = `${vm.employeeEmailAddress}`
+      let vmType = ""
+      if (vm.virtualMachineType === 0){
+        vmType = "WindowsServer2022"
+      } else if(vm.virtualMachineType === 1){
+        vmType = "Windows11"
+      } else if (vm.virtualMachineType === 2){
+        vmType = "Ubuntu2204"
+      }
+      info.appendChild(document.createElement('span')).textContent = `Typ: ${vmType}`
+      info.appendChild(document.createElement('p')).textContent = vm.description
+      let status = frag.appendChild(document.createElement('div'))
+      let statusText = status.appendChild(document.createElement('h3'))
+       if(vm.businessApprovalState === 0){
+        statusText.textContent = 'Genehmigt'
+        statusText.style.color = 'green'
+      } else if(vm.businessApprovalState === 1){
+        statusText.textContent = 'Abgelehnt'
+        statusText.style.color = 'red'
+      }else if (vm.businessApprovalState === 2) {
+         statusText.textContent = 'Offen'
+         statusText.style.color = 'orange'
+       }
 
-    let card = makeGenericCard(frag)
-    return card
+      let card = makeGenericCard(frag)
+      return card
+
+    }
+
+
+
   },
   updateTitle() {
     document.querySelector('#content > h1').textContent = 'Bedarf'
@@ -48,11 +74,13 @@ const VMView = {
     // sortien nach status? genehmigt -> offen -> abgelehnt
       this.dbg()
 
+   // Anträge holen
+
     let antraege = await fetch('https://provisioningserviceapi.azurewebsites.net/provisioning/api/RequisitionNotes', )
 
     let antraegeData = await antraege.json()
     antraegeData.forEach((antrag) => {
-      document.getElementById('requests').appendChild(VMView.makeCard(antrag))
+      document.getElementById('requests').appendChild(VMView.makeCard('request',antrag))
     })
 
 
@@ -61,7 +89,7 @@ const VMView = {
       let vmData = await res.json()
 
       vmData.forEach((vmObj) => {
-          document.getElementById('available-vms').appendChild(VMView.makeCard(vmObj))
+          document.getElementById('available-vms').appendChild(VMView.makeCard('available',vmObj))
       })
     //remove this
     //this.dbg()
