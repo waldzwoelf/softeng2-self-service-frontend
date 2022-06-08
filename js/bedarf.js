@@ -71,7 +71,16 @@ const VMView = {
     // die ganzen andere funktionen hier aufrufen, wie im dbg
     //backend und dann in '#requests' rein
     // sortien nach status? genehmigt -> offen -> abgelehnt
-      this.dbg()
+
+    document.querySelectorAll('#requests .card').forEach((it) => {
+      it.remove()
+    })
+    let states = ['genehmigt', 'abgelehnt', 'offen']
+
+    VMView.updateTitle()
+    VMView.hideAvailableDays()
+    VMView.updateNewBtn()
+    VMView.showAvailableVMs()
 
    // Anträge holen
 
