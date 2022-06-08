@@ -11,6 +11,8 @@ function toggle() {
     let buttonText = document.getElementById('submit-button');
     let nameInput = document.getElementById('nameInput');
     let pwdconfirmationInput = document.getElementById('pwdconfirmationInput');
+    let nameLabel = document.getElementById('name-label');
+    let pwdconfLabel = document.getElementById('pwdconf-label');
 
     if (switchValue) {
         register.style.display = 'none';
@@ -19,6 +21,8 @@ function toggle() {
         roleLabel.style.display = 'none';
         nameInput.style.display = 'none';
         pwdconfirmationInput.style.display = 'none';
+        nameLabel.style.display = 'none';
+        pwdconfLabel.style.display = 'none';
         buttonText.innerText = 'Sign in'
     } else {
         register.style.display = 'block';
@@ -27,6 +31,8 @@ function toggle() {
         roleLabel.style.display = 'block';
         nameInput.style.display = 'block';
         pwdconfirmationInput.style.display = 'block';
+        nameLabel.style.display = 'block';
+        pwdconfLabel.style.display = 'block';
         buttonText.innerText = 'Sign up';
 
     }
