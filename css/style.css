@@ -293,3 +293,8 @@ segment h2 {
 #newBtn .material-icons {
   font-size: 4vh;
 }
+
+#errors {
+    color: red;
+    font-weight: bold;
+}
