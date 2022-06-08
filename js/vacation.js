@@ -30,6 +30,11 @@ const VacationView = {
     segment.style.display = 'flex'
     segment.querySelector('h3').textContent = `${days} Tage`
   },
+  hideAvailableVMs(){
+    document.getElementById('available-vms').style.display = 'none'
+  },
+
+
   updateTitle() {
     document.querySelector('#content > h1').textContent = 'Urlaub'
   },
@@ -53,6 +58,7 @@ const VacationView = {
 
     VacationView.updateTitle()
     VacationView.showAvailableDays(17)
+    VacationView.hideAvailableVMs()
     VacationView.updateNewBtn()
     for (const i of Array(70).keys()) {
       document.getElementById('requests').appendChild(
