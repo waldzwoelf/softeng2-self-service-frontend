@@ -3,18 +3,19 @@
 
 const form = document.getElementById('thisform');
 
-form.addEventListener('submit', function(e) {
-        e.preventDefault();
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.getElementById("errors").innerHTML = "";
 
-        let switchValue = document.getElementById('switch-value').checked;
-        if (switchValue) {
-            signIn();
+    let switchValue = document.getElementById('switch-value').checked;
+    if (switchValue) {
+        signIn();
 
-        } else {
-            register();
-        }
-    })
-    // check if already logged in? (kommt aufs backend an ob das so geht)
+    } else {
+        register();
+    }
+})
+// check if already logged in? (kommt aufs backend an ob das so geht)
 
 
 function toggle() {
@@ -76,15 +77,30 @@ function register() {
     }
 
     fetch('https://auth.ber.ski/api/auth/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(registerdata)
-        }).then(response => response.json())
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(registerdata)
+    }).then(response => response.json())
         .then(data => {
             console.log('Success:', data);
 
+            const json = JSON.parse(data);
+            console.log(json);
+
+            // Data inputted not correct => output Error messages in error paragraph
+            if (!json.hasOwnProperty('user')) {
+                for (const item in json) {
+
+                    json[item].forEach(errormsg => {
+                        document.getElementById("errors").innerHTML += (errormsg + "<br>");
+                    });
+                }
+            } else {
+
+                // Correct 
+            }
             //Information über Email Verifizieren zurückgeben
         })
         .catch((error) => {
@@ -105,16 +121,28 @@ function signIn() {
     console.log('Sending POST with ' + text);
 
     fetch('https://auth.ber.ski/api/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
 
+            // Data inputted not correct => output Error messages in error paragraph
+            if (!data.hasOwnProperty('user')) {
+                for (const item in data) {
+
+                    data[item].forEach(errormsg => {
+                        document.getElementById("errors").innerHTML += (errormsg + "<br>");
+                    });
+                }
+            } else {
+
+                // Correct 
+            }
             // JWT speichern und auch die Homepage weiterleiten
         })
         .catch((error) => {
