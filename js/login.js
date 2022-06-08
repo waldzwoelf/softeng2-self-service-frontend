@@ -23,6 +23,8 @@ function toggle() {
         pwdconfirmationInput.style.display = 'none';
         nameLabel.style.display = 'none';
         pwdconfLabel.style.display = 'none';
+        nameInput.removeAttribute('required');
+        pwdconfirmationInput.removeAttribute('required');
         buttonText.innerText = 'Sign in'
     } else {
         register.style.display = 'block';
@@ -33,6 +35,8 @@ function toggle() {
         pwdconfirmationInput.style.display = 'block';
         nameLabel.style.display = 'block';
         pwdconfLabel.style.display = 'block';
+        nameInput.setAttribute('required', '');
+        pwdconfirmationInput.setAttribute('required', '');
         buttonText.innerText = 'Sign up';
 
     }
