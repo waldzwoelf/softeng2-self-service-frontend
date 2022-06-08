@@ -9,20 +9,25 @@ function toggle() {
     let roleLabel = document.getElementById('role-label');
     let switchValue = document.getElementById('switch-value').checked;
     let buttonText = document.getElementById('submit-button');
-    if (switchValue){
-        register.style.display= 'none';
+    let nameInput = document.getElementById('nameInput');
+    let pwdconfirmationInput = document.getElementById('pwdconfirmationInput');
+
+    if (switchValue) {
+        register.style.display = 'none';
         login.style.display = 'block';
         roleSelect.style.display = 'none';
         roleLabel.style.display = 'none';
+        nameInput.style.display = 'none';
+        pwdconfirmationInput.style.display = 'none';
         buttonText.innerText = 'Sign in'
     } else {
         register.style.display = 'block';
         login.style.display = 'none';
         roleSelect.style.display = 'block';
         roleLabel.style.display = 'block';
+        nameInput.style.display = 'block';
+        pwdconfirmationInput.style.display = 'block';
         buttonText.innerText = 'Sign up';
+
     }
 }
-
-
-
