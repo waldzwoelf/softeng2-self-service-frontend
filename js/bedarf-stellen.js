@@ -7,12 +7,11 @@ function submitProvisioningRequest(event) {
 
 
     let data = {
-        virtualMachineType: parseInt(form.querySelector('#environment').value),
+        virtualMachineType: form.querySelector('#environment').value,
         description: form.querySelector('#description').value,
         employeeEmailAddress: form.querySelector('#email').value
 
     }
-    console.log(data);
 
     let request = new Request(provAPI, {
         method: 'POST',
@@ -24,9 +23,9 @@ function submitProvisioningRequest(event) {
 
     fetch(request)
         .then((res) => {
-            if (res.status === 201) {
+            if (res.status === 200) {
                 alert('Antrag erfolgreich gesendet!')
-                // window.location.href = '/'
+                window.location.href = '/'
             } else {
                 alert('Fehler beim Senden des Requests')
             }
