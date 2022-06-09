@@ -83,28 +83,19 @@ function register() {
         body: JSON.stringify(registerdata)
     }).then(response => response.json())
         .then(data => {
-            console.log('Success:', data);
-
             const json = JSON.parse(data);
-            console.log(json);
 
             // Data inputted not correct => output Error messages in error paragraph
             if (!json.hasOwnProperty('user')) {
                 for (const item in json) {
-
                     json[item].forEach(errormsg => {
                         document.getElementById("errors").innerHTML += (errormsg + "<br>");
                     });
                 }
-            } else {
-
-                //Information über Email Verifizieren zurückgeben
             }
         })
         .catch((error) => {
             console.error('Error:', error);
-
-            // Error ausgabe
         });
 }
 
@@ -127,8 +118,6 @@ function signIn() {
     })
         .then(response => response.json())
         .then(data => {
-            console.log('Success:', data);
-
             // Data inputted not correct => output Error messages in error paragraph
             if (!data.hasOwnProperty('user')) {
                 for (const item in data) {
@@ -142,21 +131,16 @@ function signIn() {
                 // JWT in Cookie speichern und auch die Homepage weiterleiten
                 const JWT = data.access_token;
                 const expire_time = data.expires_in;
-
-                console.log(expire_time);
-
                 setCookie("JWT", JWT, expire_time)
-                console.log(getCookie("JWT"));
             }
 
         })
         .catch((error) => {
             console.error('Error:', error);
-
-            // Error ausgabe
         });
 }
 
+// auxilerie function to get a cookie with name of cname
 function getCookie(cname) {
     let name = cname + "=";
 
@@ -171,7 +155,6 @@ function getCookie(cname) {
             c = c.substring(1);
         }
         if (c.indexOf(name) == 0) {
-            console.log(c.substring(name.length, c.length));
             return c.substring(name.length, c.length);
         }
     }
@@ -180,17 +163,13 @@ function getCookie(cname) {
 
 function setCookie(cname, cvalue, exseconds) {
     const d = new Date();
-    console.log(d.getTime());
     d.setTime(d.getTime() + (exseconds * 1000));
     let expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-
+// returns a user json with proporties [name, email, updated_at, created_at, id, role, email_verified_at] using the JWT stored inside the cookie
 function getUsers() {
-
-    console.log('Bearer ' + getCookie("JWT"));
-
     fetch('https://auth.ber.ski/api/auth/user-profile', {
         method: 'GET',
         headers: {
@@ -199,19 +178,14 @@ function getUsers() {
     })
         .then(response => response.json())
         .then(data => {
-            console.log('Success:', data);
-
-            // Data
-            console.log(data);
-
+            return data;
         })
         .catch((error) => {
             console.error('Error:', error);
-
-            // Error ausgabe
         });
 }
 
+// gets old JWT from Cookie and sends it to backend, which delivers a new JWT and replaces the old cookie with the new one
 function refreshToken() {
     fetch('https://auth.ber.ski/api/auth/refresh', {
         method: 'POST',
@@ -221,8 +195,6 @@ function refreshToken() {
     })
         .then(response => response.json())
         .then(data => {
-            console.log('Success:', data);
-
             // Data inputted not correct => output Error messages in error paragraph
             if (!data.hasOwnProperty('user')) {
                 for (const item in data) {
@@ -233,21 +205,15 @@ function refreshToken() {
                     });
                 }
             } else {
-
                 // JWT in Cookie speichern
                 const JWT = data.access_token;
                 const expire_time = data.expires_in;
 
-                console.log(expire_time);
-
                 setCookie("JWT", JWT, expire_time)
-                console.log(getCookie("JWT"));
             }
 
         })
         .catch((error) => {
             console.error('Error:', error);
-
-            // Error ausgabe
         });
 }
