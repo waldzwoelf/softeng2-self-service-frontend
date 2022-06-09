@@ -2,6 +2,8 @@ let form = document.querySelector('#form-vm');
 
 function submitProvisioningRequest(event) {
     event.preventDefault();
+    console.log('hello');
+    const provAPI = 'https://provisioningserviceapi.azurewebsites.net/provisioning/api/RequisitionNotes';
 
 
     let data = {
@@ -10,20 +12,27 @@ function submitProvisioningRequest(event) {
         employeeEmailAddress: form.querySelector('#email').value
 
     }
+    console.log(data);
 
-    fetch('https://provisioningserviceapi.azurewebsites.net/provisioning/api/RequisitionNotes', {
+    let request = new Request(provAPI, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data),
-    }).then((res) => {
-        if (res.status === 201) {
-            alert('Antrag abgeschickt!')
-        } else {
-            alert('Etwas ist schief gelaufen...')
-        }
     })
+
+    fetch(request)
+        .then((res) => {
+            if (res.status === 201) {
+                alert('Antrag erfolgreich gesendet!')
+                // window.location.href = '/'
+            } else {
+                alert('Fehler beim Senden des Requests')
+            }
+        })
+
+
 }
 
 form.addEventListener('submit', submitProvisioningRequest);
