@@ -30,12 +30,6 @@ const VMView = {
   updateTitle() {
     document.querySelector('#content > h1').textContent = 'Bedarf'
   },
-  showAvailableVMs(){
-    let segment = document.getElementById('available-vms')
-    segment.style.display = 'flex'
-   segment.querySelector('h2').textContent = `Verfügbare VMs`
-  },
-
   hideAvailableDays() {
     document.getElementById('available').style.display = 'none'
   },
@@ -47,21 +41,11 @@ const VMView = {
     //backend und dann in '#requests' rein
     // sortien nach status? genehmigt -> offen -> abgelehnt
       this.dbg()
-
-    let antraege = await fetch('https://provisioningserviceapi.azurewebsites.net/provisioning/api/RequisitionNotes', )
-
-    let antraegeData = await antraege.json()
-    antraegeData.forEach((antrag) => {
-      document.getElementById('requests').appendChild(VMView.makeCard(antrag))
-    })
-
-
-    // Verfügbare VMs holen und im 'available-vms' Segment anzeigen
       let res = await fetch('https://provisioningserviceapi.azurewebsites.net/provisioning/api/VirtualEnvironments')
       let vmData = await res.json()
 
       vmData.forEach((vmObj) => {
-          document.getElementById('available-vms').appendChild(VMView.makeCard(vmObj))
+          document.getElementById('requests').appendChild(VMView.makeCard(vmObj))
       })
     //remove this
     //this.dbg()
@@ -75,7 +59,6 @@ const VMView = {
     VMView.updateTitle()
     VMView.hideAvailableDays()
     VMView.updateNewBtn()
-    VMView.showAvailableVMs()
     /*for (const i of Array(70).keys()) {
       document.getElementById('requests').appendChild(
         VMView.makeCard({
