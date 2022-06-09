@@ -3,7 +3,7 @@ const VMView = {
     // was fuer infos haben wir hier? die felder hier sind jz ausgedacht
     let frag = new DocumentFragment()
     let info = frag.appendChild(document.createElement('div'))
-    info.appendChild(document.createElement('h3')).textContent = `${vm.ipAddress}`
+    info.appendChild(document.createElement('h3')).textContent = `${vm.ipAdress}`
     info.appendChild(document.createElement('span')).textContent = `Typ: ${vm.virtualMachineType}`
     info.appendChild(document.createElement('span')).textContent = `Username/Password:`
     info.appendChild(document.createElement('span')).textContent = `${vm.username}`
@@ -36,19 +36,13 @@ const VMView = {
   updateNewBtn() {
     document.querySelector('#newBtn a').href = '/new_vm'
   },
-  async display(params) {
+  display(params) {
     // die ganzen andere funktionen hier aufrufen, wie im dbg
     //backend und dann in '#requests' rein
     // sortien nach status? genehmigt -> offen -> abgelehnt
-      this.dbg()
-      let res = await fetch('https://provisioningserviceapi.azurewebsites.net/provisioning/api/VirtualEnvironments')
-      let vmData = await res.json()
 
-      vmData.forEach((vmObj) => {
-          document.getElementById('requests').appendChild(VMView.makeCard(vmObj))
-      })
     //remove this
-    //this.dbg()
+    this.dbg()
   },
   dbg() {
     document.querySelectorAll('#requests .card').forEach((it) => {
@@ -59,7 +53,7 @@ const VMView = {
     VMView.updateTitle()
     VMView.hideAvailableDays()
     VMView.updateNewBtn()
-    /*for (const i of Array(70).keys()) {
+    for (const i of Array(70).keys()) {
       document.getElementById('requests').appendChild(
         VMView.makeCard({
           virtualMachineType: 0,
@@ -70,6 +64,6 @@ const VMView = {
           status: states[i % 3]
         })
       )
-    }*/
+    }
   },
 }
