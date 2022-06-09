@@ -1,16 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../css/style.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <script src="../js/bedarf-stellen.js" defer></script>
+
     <title>Self-Service</title>
-  </head>
-  <body>
-    <div id="root">
-      
-    </div>
-  </body>
+</head>
+<body>
+<div id="root">
+    <main>
+        <div class="center-img">
+            <img src="../media/vm.png" alt="VirtualMachineFoto" width="200" height="210">
+
+        </div>
+        <div id="request-header"><h2>Neue VM beantragen</h2></div>
+        <form id="form-vm" >
+            <div class="container">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+                <br>
+                <br>
+
+                <label for="environment"> Umgebung:</label>
+
+                <select name="environment" id="environment">
+                    <option value="0">WindowsServer2022</option>
+                    <option value="1">Windows11</option>
+                    <option value="2">Ubuntu2204
+                    </option>
+                </select>
+                <br><br>
+                <label for="description">Beschreibung:</label>
+                <textarea name="description" id="description" cols="30" rows="10"></textarea>
+
+                <br><br>
+                <div class="center-btn">
+                    <button class="btn" type="submit" id="submit-button-vm">Abschicken</button>
+
+                </div>
+
+            </div>
+        </form>
+    </main>
+
+</div>
+</body>
 </html>
