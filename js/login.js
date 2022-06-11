@@ -125,6 +125,7 @@ function signIn() {
                 const JWT = data.access_token;
                 const expire_time = data.expires_in;
                 setCookie("JWT", JWT, expire_time)
+                window.location.href = "/";
             }
 
         })
