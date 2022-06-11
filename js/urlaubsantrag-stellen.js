@@ -1,14 +1,12 @@
-function sendVacationRequest() {
-  // dann gegen richtige ID austauschen, die wa durch den login bkommen
-  let DBGID = -1
+async function sendVacationRequest() {
+  let user = await getUser()
 
   let form = document.querySelector('.form-urlaub')
 
   let data = {
-    userId: DBGID,
+    userId: user.id,
     startDate: new Date(form.querySelector('input[name="von"]').value).getTime(),
     endDate: new Date(form.querySelector('input[name="bis"]').value).getTime(),
-    comment: form.querySelector('textarea[name="comment"]').value,
     status: 'beantragt',
   }
 
@@ -16,6 +14,7 @@ function sendVacationRequest() {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + getCookie('JWT'),
     },
     body: JSON.stringify(data),
   }).then((res) => {

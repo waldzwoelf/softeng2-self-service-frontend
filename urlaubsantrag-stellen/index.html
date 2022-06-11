@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="../css/style.css"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <script src="../js/login.js"></script>
     <script src="../js/urlaubsantrag-stellen.js" defer></script>
     <title>Self-Service</title>
 </head>
@@ -18,7 +19,7 @@
         <div id="register-header"><h1>Urlaub beantragen</h1>
 
         </div>
-        <form onsubmit="return sendVacationRequest()" class="form-urlaub">
+        <form onsubmit="sendVacationRequest(); return false" class="form-urlaub">
             <div class="container">
                 <label for="von" style="display: inline-block; width: 40px;">Von: </label>
                 <input id="von" type="date" name="von" required/>
@@ -27,8 +28,6 @@
                 <label for="bis" style="display: inline-block; width: 40px;">Bis: </label>  
                 <input id="bis" type="date" name="bis" required/>
                 <br>
-                <label for="comment">Kommentar:</label>
-                <textarea name="comment" id="comment" cols="37" rows="8"></textarea>
                 <div class="center-btn">
                     <button type="submit" class="btn" id="submit-button">Antrag schicken</button>
                 </div>
