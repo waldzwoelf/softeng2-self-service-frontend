@@ -1,9 +1,4 @@
-// logic fuer login backend requests
-
-
-const form = document.getElementById('thisform');
-
-form.addEventListener('submit', function (e) {
+document.getElementById('thisform').addEventListener('submit', function (e) {
     e.preventDefault();
     document.getElementById("errors").innerHTML = "";
 
@@ -15,8 +10,6 @@ form.addEventListener('submit', function (e) {
         register();
     }
 })
-// check if already logged in? (kommt aufs backend an ob das so geht)
-
 
 function toggle() {
     let register = document.getElementById('register-header');
@@ -100,7 +93,7 @@ function register() {
 }
 
 function signIn() {
-
+    const form = document.getElementById('thisform');
     const email = form.elements['email'].value;
     const passwort = form.elements['password'].value;
 
