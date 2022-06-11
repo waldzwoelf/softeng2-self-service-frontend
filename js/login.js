@@ -169,20 +169,20 @@ function setCookie(cname, cvalue, exseconds) {
 }
 
 // returns a user json with proporties [name, email, updated_at, created_at, id, role, email_verified_at] using the JWT stored inside the cookie
-function getUsers() {
-    fetch('https://auth.ber.ski/api/auth/user-profile', {
-        method: 'GET',
-        headers: {
-            Authorization: 'Bearer ' + getCookie("JWT")
-        }
-    })
-        .then(response => response.json())
-        .then(data => {
-            return data;
+async function getUser() {
+    try {
+        let res = await fetch('https://auth.ber.ski/api/auth/user-profile', {
+            method: 'GET',
+            headers: {
+                Authorization: 'Bearer ' + getCookie("JWT")
+            }
         })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+        let user = await res.json();
+        console.log(user);
+        return user;
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 // gets old JWT from Cookie and sends it to backend, which delivers a new JWT and replaces the old cookie with the new one
