@@ -13,6 +13,11 @@
     <title>Self-Service</title>
   </head>
   <body>
+    <script>
+      if (!getCookie('JWT')) {
+        window.location.href = 'login/';
+      }
+    </script>
     <div id="root">
       <div id="topbar">
         <span class="material-icons" onclick="VacationView.display()">flight_takeoff</span>
