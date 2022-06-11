@@ -4,8 +4,12 @@ const VacationView = {
     let zeit = frag.appendChild(document.createElement('div'))
     zeit.appendChild(document.createElement('h3')).textContent = 'Zeitraum'
     zeit.appendChild(document.createElement('span')).textContent = `${vacation.dayCount} Tage`
-    zeit.appendChild(document.createElement('span')).textContent = `von ${new Date(vacation.startDate).toLocaleDateString('de-DE')}`
-    zeit.appendChild(document.createElement('span')).textContent = `bis ${new Date(vacation.endDate).toLocaleDateString('de-DE')}`
+    zeit.appendChild(document.createElement('span')).textContent = `von ${new Date(
+      vacation.startDate
+    ).toLocaleDateString('de-DE')}`
+    zeit.appendChild(document.createElement('span')).textContent = `bis ${new Date(vacation.endDate).toLocaleDateString(
+      'de-DE'
+    )}`
 
     let status = frag.appendChild(document.createElement('div'))
     let statusText = status.appendChild(document.createElement('h3'))
@@ -21,7 +25,7 @@ const VacationView = {
       statusText.style.color = 'orange'
     }
 
-    frag.appendChild(document.createElement('p')).textContent = vacation.comment || "Kein Kommentar"
+    frag.appendChild(document.createElement('p')).textContent = vacation.comment || 'Kein Kommentar'
 
     let card = makeGenericCard(frag)
     return card
@@ -31,11 +35,9 @@ const VacationView = {
     segment.style.display = 'flex'
     segment.querySelector('h3').textContent = `${days} Tage`
   },
-  hideAvailableVMs(){
+  hideAvailableVMs() {
     document.getElementById('available-vms').style.display = 'none'
   },
-
-
   updateTitle() {
     document.querySelector('#content > h1').textContent = 'Urlaub'
   },
@@ -48,18 +50,30 @@ const VacationView = {
     })
     this.updateTitle()
     this.updateNewBtn()
+    this.hideAvailableVMs()
 
-    // dann gegen richtige ID austauschen, die wa durch den login bkommen
-    let DBGID = -1
-
+    let user = await getUser()
 
     // available days
-    let res = await fetch(`https://studium.webfajo.de/mitarbeiter/userdata/${DBGID}`)
-    let userdata = await res.json()
-    VacationView.showAvailableDays(userdata.nachAbzugUrlaubsKonto)
+
+    try {
+      let res = await fetch(`https://studium.webfajo.de/mitarbeiter/userdata/${user.id}`, {
+        headers: {
+          Authorization: 'Bearer ' + getCookie('JWT'),
+        },
+      })
+      let userdata = await res.json()
+      VacationView.showAvailableDays(userdata.nachAbzugUrlaubsKonto)
+    } catch (e) {
+      alert('Fehler beim Abrufen der Daten')
+    }
 
     // antrage
-    res = await fetch(`https://studium.webfajo.de/mitarbeiter/urlaubsantraege/${DBGID}`)
+    res = await fetch(`https://studium.webfajo.de/mitarbeiter/urlaubsantraege/${user.id}`, {
+      headers: {
+        Authorization: 'Bearer ' + getCookie('JWT'),
+      },
+    })
     if (res.status !== 200) {
       document.getElementById('requests').appendChild(makeInfoCard('Keine Anträge vorhanden'))
     }
