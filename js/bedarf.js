@@ -67,7 +67,7 @@ const VMView = {
   updateNewBtn() {
     document.querySelector('#newBtn a').href = '/new_vm'
   },
-  display(params) {
+  async display(params) {
     document.querySelectorAll('#requests .card').forEach((it) => {
       it.remove()
     })
