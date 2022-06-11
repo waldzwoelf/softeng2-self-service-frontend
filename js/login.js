@@ -1,15 +1,19 @@
-document.getElementById('thisform').addEventListener('submit', function (e) {
-    e.preventDefault();
-    document.getElementById("errors").innerHTML = "";
-
-    let switchValue = document.getElementById('switch-value').checked;
-    if (switchValue) {
-        signIn();
-
-    } else {
-        register();
-    }
-})
+try {
+  document.getElementById('thisform').addEventListener('submit', function (e) {
+      e.preventDefault();
+      document.getElementById("errors").innerHTML = "";
+  
+      let switchValue = document.getElementById('switch-value').checked;
+      if (switchValue) {
+          signIn();
+  
+      } else {
+          register();
+      }
+  })
+} catch (e) {
+  // not the login page
+}
 
 function toggle() {
     let register = document.getElementById('register-header');
