@@ -126,7 +126,7 @@ const ApprovalView = {
         document.querySelector('#available').style.display = 'none'
     },
     updateNewBtn() {
-        document.querySelector('#newBtn a').href = ''
+        document.querySelector('#newBtn').style.display = 'none'
     },
     hideAvailableVMs() {
         document.getElementById('available-vms').style.display = 'none'
@@ -142,6 +142,7 @@ const ApprovalView = {
         ApprovalView.hideAvailableVMs()
         ApprovalView.hideAvailableDays()
         ApprovalView.showApprovableRequests()
+        ApprovalView.updateNewBtn()
 
         let user = await getUser()
         console.log(user);
