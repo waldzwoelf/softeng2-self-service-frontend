@@ -10,6 +10,7 @@
     <script src="js/vacation.js"></script>
     <script src="js/bedarf.js"></script>
     <script src="js/login.js"></script>
+    <script src="js/ApprovalView.js"></script>
     <script src="js/main.js" defer></script>
     <title>Self-Service</title>
   </head>
@@ -29,6 +30,10 @@
           <span class="material-icons" onclick="VMView.display()">dvr</span>
           <a>Bedarf</a>
         </div>
+        <div class="intopbar">
+          <span class="material-icons" onclick="ApprovalView.display()">approval</span>
+
+        </div>
         <span class="material-icons" onclick="setCookie('JWT', '', 1);window.location.href = 'login/'" >logout</span> 
       </div>
       
@@ -40,6 +45,10 @@
         </segment>
         <segment id="available-vms">
           <h2>Verfügbare VMs</h2>
+        </segment>
+        <segment id="approvable-requests">
+          <h2>Zu genehmigende Anträge</h2>
+
         </segment>
         <segment id="requests">
           <h2>Anträge</h2>

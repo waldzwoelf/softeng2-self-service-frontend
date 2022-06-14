@@ -59,6 +59,7 @@ const VMView = {
     let segment = document.getElementById('available-vms')
     segment.style.display = 'flex'
    segment.querySelector('h2').textContent = `Verfügbare VMs`
+    document.getElementById('requests').style.display = 'flex'
   },
 
   hideAvailableDays() {
@@ -66,6 +67,10 @@ const VMView = {
   },
   updateNewBtn() {
     document.querySelector('#newBtn a').href = '/new_vm'
+  },
+  hideApprovableRequests() {
+
+    document.getElementById('approvable-requests').style.display = 'none'
   },
   async display(params) {
     document.querySelectorAll('#requests .card').forEach((it) => {
@@ -77,6 +82,7 @@ const VMView = {
     VMView.hideAvailableDays()
     VMView.updateNewBtn()
     VMView.showAvailableVMs()
+    VMView.hideApprovableRequests()
 
    // Anträge holen
 

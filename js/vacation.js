@@ -34,6 +34,7 @@ const VacationView = {
     let segment = document.getElementById('available')
     segment.style.display = 'flex'
     segment.querySelector('h3').textContent = `${days} Tage`
+    document.getElementById('requests').style.display = 'flex'
   },
   hideAvailableVMs() {
     document.getElementById('available-vms').style.display = 'none'
@@ -44,6 +45,11 @@ const VacationView = {
   updateNewBtn() {
     document.querySelector('#newBtn a').href = '/urlaubsantrag-stellen'
   },
+
+  hideApprovableRequests() {
+
+    document.getElementById('approvable-requests').style.display = 'none'
+  },
   async display(params) {
     document.querySelectorAll('#requests .card').forEach((it) => {
       it.remove()
@@ -51,6 +57,7 @@ const VacationView = {
     this.updateTitle()
     this.updateNewBtn()
     this.hideAvailableVMs()
+    this.hideApprovableRequests()
 
     let user = await getUser()
 
@@ -64,6 +71,7 @@ const VacationView = {
       })
       let userdata = await res.json()
       VacationView.showAvailableDays(userdata.nachAbzugUrlaubsKonto)
+
     } catch (e) {
       alert('Fehler beim Abrufen der Daten')
     }
