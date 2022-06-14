@@ -59,22 +59,21 @@ const VMView = {
     let segment = document.getElementById('available-vms')
     segment.style.display = 'flex'
    segment.querySelector('h2').textContent = `Verfügbare VMs`
+    document.getElementById('requests').style.display = 'flex'
   },
 
   hideAvailableDays() {
     document.getElementById('available').style.display = 'none'
   },
   updateNewBtn() {
+    document.querySelector('#newBtn').style = 'flex'
     document.querySelector('#newBtn a').href = '/new_vm'
   },
-  async display(params) {
-    document.querySelectorAll('#requests .card').forEach((it) => {
-      it.remove()
-    })
-    // die ganzen andere funktionen hier aufrufen, wie im dbg
-    //backend und dann in '#requests' rein
-    // sortien nach status? genehmigt -> offen -> abgelehnt
+  hideApprovableRequests() {
 
+    document.getElementById('approvable-requests').style.display = 'none'
+  },
+  async display(params) {
     document.querySelectorAll('#requests .card').forEach((it) => {
       it.remove()
     })
@@ -84,24 +83,52 @@ const VMView = {
     VMView.hideAvailableDays()
     VMView.updateNewBtn()
     VMView.showAvailableVMs()
+    VMView.hideApprovableRequests()
 
    // Anträge holen
 
-    let antraege = await fetch('https://provisioningserviceapi.azurewebsites.net/provisioning/api/RequisitionNotes', )
+    let user = await getUser();
 
-    let antraegeData = await antraege.json()
-    antraegeData.forEach((antrag) => {
+    try {
+      let res = await fetch(`https://provisioningserviceapi.azurewebsites.net/provisioning/api/RequisitionNotes?emailAddress=${user.email}`,{
+        headers: {
+          Authorization: 'Bearer ' + getCookie('JWT'),
+        },
+      })
+      let antraegeData = await res.json()
+      antraegeData.forEach((antrag) => {
       document.getElementById('requests').appendChild(VMView.makeCard('request',antrag))
     })
 
+    } catch (e) {
+      alert('Fehler beim Holen der Daten')
+    }
+
+
+
+
 
     // Verfügbare VMs holen und im 'available-vms' Segment anzeigen
-      let res = await fetch('https://provisioningserviceapi.azurewebsites.net/provisioning/api/VirtualEnvironments')
-      let vmData = await res.json()
-
-      vmData.forEach((vmObj) => {
-          document.getElementById('available-vms').appendChild(VMView.makeCard('available',vmObj))
+    try {
+      let vmres = await fetch(`https://provisioningserviceapi.azurewebsites.net/provisioning/api/VirtualEnvironments?emailAddress=${user.email}`, {
+        headers: {
+          Authorization: 'Bearer ' + getCookie('JWT'),
+        },
       })
+      console.log('available',vmres.status);
+      if (vmres.status === 404){
+        document.getElementById('available-vms').appendChild(makeInfoCard2('Keine VMS vorhanden'))
+      }else {
+      let vmData = await vmres.json()
+      vmData.forEach((vmObj) => {
+        document.getElementById('available-vms').appendChild(VMView.makeCard('available', vmObj))
+
+      })
+
+      }
+    } catch (e) {
+      console.log(e);
+    }
   },
   dbg() {
     document.querySelectorAll('#requests .card').forEach((it) => {
