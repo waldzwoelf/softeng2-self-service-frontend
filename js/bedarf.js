@@ -86,15 +86,15 @@ const VMView = {
         headers: {
           Authorization: 'Bearer ' + getCookie('JWT'),
         },
-      }).then((res) => {
+      })
         if (res.status === 404){
           document.getElementById('requests').appendChild(makeInfoCard('Keine Einträge vorhanden'))
+        }else{
+          let antraegeData = await res.json()
+          antraegeData.forEach((antrag) => {
+          document.getElementById('requests').appendChild(VMView.makeCard('request',antrag))
+          })
         }
-      })
-      let antraegeData = await res.json()
-      antraegeData.forEach((antrag) => {
-      document.getElementById('requests').appendChild(VMView.makeCard('request',antrag))
-    })
 
 
 
@@ -102,26 +102,21 @@ const VMView = {
 
 
     // Verfügbare VMs holen und im 'available-vms' Segment anzeigen
-    try {
-      let vmres = await fetch(`https://provisioningserviceapi.azurewebsites.net/provisioning/api/VirtualEnvironments?emailAddress=${user.email}`, {
+      res = await fetch(`https://provisioningserviceapi.azurewebsites.net/provisioning/api/VirtualEnvironments?emailAddress=${user.email}`, {
         headers: {
           Authorization: 'Bearer ' + getCookie('JWT'),
         },
       })
-      console.log('available',vmres.status);
-      if (vmres.status === 404){
+      if (res.status === 404){
         document.getElementById('available-vms').appendChild(makeInfoCard2('Keine VMS vorhanden'))
       }else {
-      let vmData = await vmres.json()
+      let vmData = await res.json()
       vmData.forEach((vmObj) => {
         document.getElementById('available-vms').appendChild(VMView.makeCard('available', vmObj))
 
       })
 
       }
-    } catch (e) {
-      console.log(e);
-    }
   },
   dbg() {
     document.querySelectorAll('#requests .card').forEach((it) => {
