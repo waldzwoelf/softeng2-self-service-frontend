@@ -82,20 +82,20 @@ const VMView = {
 
     let user = await getUser();
 
-    try {
       let res = await fetch(`https://provisioningserviceapi.azurewebsites.net/provisioning/api/RequisitionNotes?emailAddress=${user.email}`,{
         headers: {
           Authorization: 'Bearer ' + getCookie('JWT'),
         },
+      }).then((res) => {
+        if (res.status === 404){
+          document.getElementById('requests').appendChild(makeInfoCard('Keine Einträge vorhanden'))
+        }
       })
       let antraegeData = await res.json()
       antraegeData.forEach((antrag) => {
       document.getElementById('requests').appendChild(VMView.makeCard('request',antrag))
     })
 
-    } catch (e) {
-      alert('Fehler beim Holen der Daten')
-    }
 
 
 
