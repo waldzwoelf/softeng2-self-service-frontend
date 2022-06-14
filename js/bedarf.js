@@ -66,6 +66,7 @@ const VMView = {
     document.getElementById('available').style.display = 'none'
   },
   updateNewBtn() {
+    document.querySelector('#newBtn').style = 'flex'
     document.querySelector('#newBtn a').href = '/new_vm'
   },
   hideApprovableRequests() {

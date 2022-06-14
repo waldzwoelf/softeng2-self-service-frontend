@@ -43,6 +43,7 @@ const VacationView = {
     document.querySelector('#content > h1').textContent = 'Urlaub'
   },
   updateNewBtn() {
+    document.querySelector('#newBtn').style = 'flex'
     document.querySelector('#newBtn a').href = '/urlaubsantrag-stellen'
   },
 
