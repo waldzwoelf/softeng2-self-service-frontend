@@ -168,9 +168,16 @@ const ApprovalView = {
 
         let user = await getUser()
         console.log(user);
-        if (user.role === 'admin' || user.role === 'manager'){
-            console.log('accepted!');
+
+        if (user.role === 'user'){
+            console.log('yes this is a user ');
             try {
+                document.getElementById('approvable-requests').appendChild(makeInfoCard3('Nicht berechtigt!'))
+            }catch (e) {
+                console.log(e);
+            }
+        }else if (user.role === 'admin' || user.role === 'manager'){
+            console.log('accepted!');
                 let res = await fetch(`https://provisioningserviceapi.azurewebsites.net/provisioning/api/RequisitionNotes/`,{
                     headers: {
                         Authorization: 'Bearer ' + getCookie('JWT'),
@@ -181,13 +188,7 @@ const ApprovalView = {
                     document.getElementById('approvable-requests').appendChild(ApprovalView.makeCard('approval',antrag))
                 })
 
-            } catch (e) {
-                alert(e)
-            }
         }
-
-
-
     }
 
 
