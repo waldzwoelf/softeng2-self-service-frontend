@@ -60,6 +60,27 @@ const ApprovalView = {
         ApprovalView.hideAvailableDays()
         ApprovalView.showApprovableRequests()
 
+        let user = await getUser()
+        console.log(user);
+        if (user.role === 'admin' || user.role === 'manager'){
+            console.log('accepted!');
+            try {
+                let res = await fetch(`https://provisioningserviceapi.azurewebsites.net/provisioning/api/RequisitionNotes/`,{
+                    headers: {
+                        Authorization: 'Bearer ' + getCookie('JWT'),
+                    },
+                })
+                let antraegeData = await res.json()
+                antraegeData.forEach((antrag) => {
+                    document.getElementById('approvable-requests').appendChild(ApprovalView.makeCard('approval',antrag))
+                })
+
+            } catch (e) {
+                alert(e)
+            }
+        }
+
+
 
     }
 
