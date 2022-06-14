@@ -100,6 +100,28 @@ const ApprovalView = {
             buttonReject.textContent = 'Reject'
             buttonReject.addEventListener('click', function () {
                 console.log('Reject');
+                let id = this.parentElement.querySelector('h2').textContent
+                let rejectionReason = prompt('Reason for Rejecting this Request')
+                console.log(rejectionReason);
+                let requestToPutRejected = {
+                    "reasonForRejection": rejectionReason,
+                    "rejected": true
+                }
+                fetch(`https://provisioningserviceapi.azurewebsites.net/provisioning/api/RequisitionNotes/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + getCookie('JWT')
+                    },
+                    body: JSON.stringify(requestToPutRejected)
+
+                }).then((res) => {
+                    if (res.status === 204 || res.status === 200){
+                        console.log('Yay');
+                    }else {
+                        console.log('nopppioo');
+                    }
+                })
             })
             info.appendChild(buttonReject)
 
