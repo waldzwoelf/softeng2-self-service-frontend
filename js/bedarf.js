@@ -71,6 +71,9 @@ const VMView = {
     document.querySelectorAll('#requests .card').forEach((it) => {
       it.remove()
     })
+    document.querySelectorAll('#available-vms .card').forEach((it) => {
+      it.remove()
+    })
     let states = ['genehmigt', 'abgelehnt', 'offen']
 
     VMView.updateTitle()
@@ -89,10 +92,12 @@ const VMView = {
       })
         if (res.status === 404){
           document.getElementById('requests').appendChild(makeInfoCard('Keine Einträge vorhanden'))
-        }else{
+        } else{
           let antraegeData = await res.json()
           antraegeData.forEach((antrag) => {
-          document.getElementById('requests').appendChild(VMView.makeCard('request',antrag))
+            if (antrag.businessApprovalState !== 0) {
+              document.getElementById('requests').appendChild(VMView.makeCard('request',antrag))
+            }
           })
         }
 
@@ -109,7 +114,7 @@ const VMView = {
       })
       if (res.status === 404){
         document.getElementById('available-vms').appendChild(makeInfoCard2('Keine VMS vorhanden'))
-      }else {
+      } else {
       let vmData = await res.json()
       vmData.forEach((vmObj) => {
         document.getElementById('available-vms').appendChild(VMView.makeCard('available', vmObj))
